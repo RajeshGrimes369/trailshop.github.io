@@ -1,45 +1,153 @@
+<!-- 👉 CHANGE THESE TWO LINES ONLY -->
+<script>
+  const MY_WHATSAPP = "919677391275";   // Your WhatsApp number with country code, no +
+  const SHOP_NAME   = "AkStore26";
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>My Little Shop</title>
-  <style>
-    body { font-family: Arial; margin: 0; background:#f7f7f7; }
-    header { background:#222; color:#fff; padding:20px; text-align:center; }
-    .products { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; padding:30px; }
-    .card { background:#fff; border:1px solid #ddd; border-radius:8px; width:200px; padding:15px; text-align:center; }
-    .card img { width:100%; border-radius:4px; }
-    .price { color:#c00; font-weight:bold; margin:10px 0; }
-    button { background:#28a745; color:#fff; border:none; padding:8px 12px; border-radius:4px; cursor:pointer; }
-  </style>
+<meta charset="UTF-8">
+<title>QuickCart – Mini Shop</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{--c1:#ff6b6b;--c2:#f7f7f7;--c3:#fff;--c4:#333}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
+  body{background:var(--c2);color:var(--c4)}
+  header{background:var(--c1);color:var(--c3);padding:25px;text-align:center}
+  header h1{font-size:2rem;letter-spacing:1px}
+  .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:25px;padding:30px}
+  .card{background:var(--c3);border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  .card img{width:100%;height:160px;object-fit:cover}
+  .card-body{padding:15px}
+  .card-body h3{font-size:1.1rem;margin-bottom:6px}
+  .price{color:var(--c1);font-size:1.2rem;font-weight:700;margin-bottom:12px}
+  .btn{background:var(--c1);color:var(--c3);border:none;padding:10px 18px;border-radius:6px;cursor:pointer;font-size:.95rem;transition:.2s}
+  .btn:hover{filter:brightness(1.1)}
+  /* Modal */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;place-items:center;z-index:999}
+  .modal-content{background:var(--c3);padding:25px;border-radius:12px;width:90%;max-width:420px}
+  .modal h2{margin-bottom:15px}
+  .modal input,.modal textarea{width:100%;padding:10px 12px;margin-bottom:12px;border:1px solid #ccc;border-radius:6px;font-size:.95rem}
+  .modal textarea{resize:vertical;min-height:90px}
+  .close{float:right;font-size:1.4rem;cursor:pointer}
+  footer{background:#222;color:#fff;text-align:center;padding:20px;margin-top:40px;font-size:.9rem}
+</style>
 </head>
 <body>
-  <header>
-    <h1>My Little Shop</h1>
-    <p>Great stuff, great prices!</p>
-  </header>
 
-  <main class="products">
-    <div class="card">
-      <img src="https://via.placeholder.com/200x150?text=T-Shirt" alt="T-Shirt">
-      <h3>Cool T-Shirt</h3>
-      <div class="price">$12.99</div>
-      <button onclick="alert('Contact us via email to buy!')">Buy</button>
-    </div>
+<header>
+  <h1>QuickCart</h1>
+  <p>Hand-picked goodies, delivered fast!</p>
+</header>
 
-    <div class="card">
-      <img src="https://via.placeholder.com/200x150?text=Mug" alt="Mug">
-      <h3>Coffee Mug</h3>
-      <div class="price">$7.50</div>
-      <button onclick="alert('Contact us via email to buy!')">Buy</button>
+<main class="products">
+  <!-- Product 1 -->
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=60" alt="Smart Watch">
+    <div class="card-body">
+      <h3>Smart Watch X1</h3>
+      <div class="price">₹2 499</div>
+      <button class="btn buy-btn" data-name="Smart Watch X1" data-price="2499">Buy</button>
     </div>
+  </div>
 
-    <div class="card">
-      <img src="https://via.placeholder.com/200x150?text=Sticker" alt="Sticker">
-      <h3>Fun Sticker</h3>
-      <div class="price">$2.00</div>
-      <button onclick="alert('Contact us via email to buy!')">Buy</button>
+  <!-- Product 2 -->
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=60" alt="Sneakers">
+    <div class="card-body">
+      <h3>Cool Sneakers</h3>
+      <div class="price">₹1 899</div>
+      <button class="btn buy-btn" data-name="Cool Sneakers" data-price="1899">Buy</button>
     </div>
-  </main>
+  </div>
+
+  <!-- Product 3 -->
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=400&q=60" alt="Sunglasses">
+    <div class="card-body">
+      <h3>UV Sunglasses</h3>
+      <div class="price">₹899</div>
+      <button class="btn buy-btn" data-name="UV Sunglasses" data-price="899">Buy</button>
+    </div>
+  </div>
+
+  <!-- Product 4 -->
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=400&q=60" alt="Headphones">
+    <div class="card-body">
+      <h3>Wireless Headphones</h3>
+      <div class="price">₹1 299</div>
+      <button class="btn buy-btn" data-name="Wireless Headphones" data-price="1299">Buy</button>
+    </div>
+  </div>
+</main>
+
+<!-- Modal -->
+<div class="modal" id="orderModal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Checkout</h2>
+    <form id="orderForm">
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="tel" id="phone" placeholder="WhatsApp Number" required>
+      <input type="text" id="address" placeholder="Delivery Address" required>
+      <input type="text" id="pin" placeholder="PIN Code" required>
+      <textarea id="note" placeholder="Any note / color / size"></textarea>
+      <button type="submit" class="btn">Send Order via WhatsApp</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  © 2024 QuickCart – Built with ❤️
+</footer>
+
+<script>
+  // === CONFIG ===
+  const MY_WHATSAPP = "919999999999";   // <-- CHANGE TO YOUR NUMBER
+  const SHOP_NAME   = "QuickCart";
+
+  // === MODAL LOGIC ===
+  const modal   = document.getElementById('orderModal');
+  const closeBtn = document.querySelector('.close');
+  let currentProduct = {};
+
+  // open modal & remember product
+  document.querySelectorAll('.buy-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      currentProduct = {
+        name : btn.dataset.name,
+        price: btn.dataset.price
+      };
+      modal.style.display = 'grid';
+    });
+  });
+
+  // close modal
+  closeBtn.onclick = ()=> modal.style.display='none';
+  window.onclick   = e => { if(e.target===modal) modal.style.display='none'; };
+
+  // === FORM SUBMIT ===
+  document.getElementById('orderForm').addEventListener('submit', e=>{
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const data = Object.fromEntries(fd.entries());
+    const text =
+`*New Order – ${SHOP_NAME}*
+👤 Name: ${data.name}
+📱 Phone: ${data.phone}
+📦 Product: ${currentProduct.name}
+💰 Price: ₹${currentProduct.price}
+🏠 Address: ${data.address}, PIN ${data.pin}
+📝 Note: ${data.note || 'none'}`;
+
+    const url = `https://wa.me/${MY_WHATSAPP}?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+    modal.style.display='none';
+    e.target.reset();
+  });
+</script>
+
 </body>
 </html>
